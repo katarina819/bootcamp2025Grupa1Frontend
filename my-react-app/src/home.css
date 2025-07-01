@@ -1,0 +1,24 @@
+@import "./colors.css";
+
+div {
+    height: 100vh;
+    text-align: center;
+}
+
+button {
+    margin: 20vh 10px;
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: var(--accent);
+    color: white;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+button:hover {
+  background-color: var(--primary);
+  box-shadow: 0 0 20px var(--secondary);
+  transform: scale(1.1);
+}

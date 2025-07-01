@@ -13,7 +13,7 @@ const Movies = () => {
         return res.json();
       })
       .then(data => {
-        setMovies(data);
+        setMovies(data.items);
         setLoading(false);
       })
       .catch(err => {
@@ -24,7 +24,7 @@ const Movies = () => {
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p>Error: {error}</p>;
-
+  
   return (
     <div>
       <h2>Movies List</h2>

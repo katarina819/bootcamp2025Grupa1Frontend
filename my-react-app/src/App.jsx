@@ -1,10 +1,18 @@
-import Movies from './movies';  // ili './Movies.jsx' ako je točan naziv datoteke
+import Movies from './movies';
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Navbar from './navbar';
+import Home from './home';
 
 function App() {
   return (
-    <div>
-      <Movies />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
