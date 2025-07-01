@@ -1,26 +1,55 @@
 .movies-table {
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   border-collapse: collapse;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  transition: box-shadow 0.3s ease;
 }
 
 .movies-table th,
 .movies-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  padding: 18px 24px;       /* Povećani razmaci u ćelijama */
+  border-bottom: 1px solid #e2e2e2;
   text-align: left;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .movies-table th {
   background-color: #4CAF50;
   color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  user-select: none;
 }
 
 .movies-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
 }
 
 .movies-table tr:hover {
-  background-color: #ddd;
+  background-color: #d9f0e5;
+  cursor: pointer;
 }
+
+.movies-container h2 {
+  text-align: center;
+  margin-bottom: 20px; /* možeš dodati razmak ispod naslova */
+  font-weight: 700;
+  font-size: 28px;
+  color: #333;
+}
+
+.button-active {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
