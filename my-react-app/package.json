@@ -9,20 +9,14 @@
   },
   "dependencies": {
     "axios": "^1.10.0",
-<<<<<<< HEAD
     "esbuild": "^0.25.5",
-=======
->>>>>>> 60f994c3736fb53ae64938735ea1ee2b7628b914
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
-<<<<<<< HEAD
-=======
     "react-router-dom": "^7.6.3",
->>>>>>> 60f994c3736fb53ae64938735ea1ee2b7628b914
     "vite": "^7.0.0"
   },
   "main": "index.js",

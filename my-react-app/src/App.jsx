@@ -1,11 +1,10 @@
 import axios from "axios";
-import Movies from "./movies"; // ili './Movies.jsx' ako je točan naziv datoteke
+import Movies from "./movies.jsx"; // ili './Movies.jsx' ako je točan naziv datoteke
 import MovieForm from "./MovieForm.jsx";
-import Movies from './movies';
-import {BrowserRouter, Routes, Route} from "react-router-dom"
-import Navbar from './navbar';
-import Home from './home';
-import MovieDetails from './details';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./navbar";
+import Home from "./home";
+import MovieDetails from "./details";
 
 function App() {
   const addMovie = async (movie) => {
@@ -31,8 +30,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
-          <Route path="movies" element={<Movies/>} />
-          <Route path="details/:movieId" element={<MovieDetails/>}/>
+          <Route path="movies" element={<Movies />} />
+          <Route path="details/:movieId" element={<MovieDetails />} />
+          <Route
+            path="add-movie"
+            element={
+              <MovieForm addMovie={addMovie} updateMovie={updateMovie} />
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
