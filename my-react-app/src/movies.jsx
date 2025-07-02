@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import './movies.css';
+import React, { useEffect, useState } from "react";
+import "./movies.css";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -7,16 +7,16 @@ const Movies = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://localhost:7123/api/Movie/get-all-movies')
-      .then(res => {
-        if (!res.ok) throw new Error('Network error');
+    fetch("https://localhost:7123/api/Movie/get-all-movies")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network error");
         return res.json();
       })
-      .then(data => {
-        setMovies(data);
+      .then((data) => {
+        setMovies(data.items);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
@@ -39,13 +39,13 @@ const Movies = () => {
           </tr>
         </thead>
         <tbody>
-          {movies.map(movie => (
+          {movies.map((movie) => (
             <tr key={movie.id}>
               <td>{movie.name}</td>
               <td>{movie.duration}</td>
               <td>{movie.rating}</td>
               <td>{movie.releaseYear}</td>
-              <td>{movie.genres ? movie.genres.join(', ') : 'N/A'}</td>
+              <td>{movie.genres ? movie.genres.join(", ") : "N/A"}</td>
             </tr>
           ))}
         </tbody>
