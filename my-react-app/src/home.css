@@ -41,3 +41,24 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+.search ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 1000;
+}
+
+.search ul li {
+    padding: 8px;
+    cursor: pointer;
+    borderBottom: 1px solid #eee;
+}

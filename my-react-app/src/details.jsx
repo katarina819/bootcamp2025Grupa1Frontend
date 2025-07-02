@@ -1,10 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './details.css'
 
-export default function MovieDetails({ movieId }) {
+export default function MovieDetails() {
     const [movie, setMovie] = useState([]);
     const [error, setError] = useState(null);
+    const {movieId} = useParams();
 
     useEffect(() => {
         if (!movieId) return;
