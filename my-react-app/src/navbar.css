@@ -1,0 +1,28 @@
+@import "./colors.css";
+
+nav {
+    background-color: var(--primary);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+nav  a {
+  float: left;
+  display: block;
+  color: var(--secondary);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+nav a:hover{
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+nav a.active {
+    background-color: var(--accent);
+    color: var(--secondary)
+}
