@@ -12,7 +12,7 @@ export default function Home(){
         <div className="home-container">
             <div className="buttonas-wrapper">
                 <Link to="/movies"><button className="home-page-btn">Movies</button></Link>
-                <Link to="/add"><button className="home-page-btn">AddMovie</button></Link>
+                <Link to="/add-movie"><button className="home-page-btn">AddMovie</button></Link>
             </div>
             <Searchbar onSearch={fetchMoviesByName}/>
         </div>
