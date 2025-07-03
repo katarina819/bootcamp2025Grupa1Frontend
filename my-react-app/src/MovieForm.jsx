@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Add useNavigate
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import "./MovieForm.css";
 
 function MovieForm({ addMovie, updateMovie }) {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const editingMovie = location.state?.editingMovie;
 
   const [formData, setFormData] = useState({
@@ -194,6 +195,7 @@ function MovieForm({ addMovie, updateMovie }) {
       } else {
         await addMovie(movie);
       }
+      // Reset form
       setFormData({
         id: "",
         name: "",
@@ -207,12 +209,33 @@ function MovieForm({ addMovie, updateMovie }) {
       });
       setSelectedGenreIds([]);
       setSelectedLanguageIds([]);
+      // Navigate to movie page after successful submission
+      navigate("/movies");
     } catch (error) {
       console.error("Error submitting movie:", error);
       setError(
         "Failed to submit movie: " + (error.response?.data || error.message)
       );
     }
+  };
+
+  const handleCancel = () => {
+    // Reset form
+    setFormData({
+      id: "",
+      name: "",
+      duration: "",
+      releaseYear: "",
+      rating: "",
+      description: "",
+      directorName: "",
+      genres: "",
+      languages: "",
+    });
+    setSelectedGenreIds([]);
+    setSelectedLanguageIds([]);
+    // Navigate to movie page
+    navigate("/movies");
   };
 
   return (
@@ -374,22 +397,7 @@ function MovieForm({ addMovie, updateMovie }) {
           <button
             type="button"
             className="cancel"
-            onClick={() => {
-              setFormData({
-                id: "",
-                name: "",
-                duration: "",
-                releaseYear: "",
-                rating: "",
-                description: "",
-                directorName: "",
-                genres: "",
-                languages: "",
-              });
-              setSelectedGenreIds([]);
-              setSelectedLanguageIds([]);
-              updateMovie(null);
-            }}
+            onClick={handleCancel} // Use handleCancel function
           >
             Cancel
           </button>
