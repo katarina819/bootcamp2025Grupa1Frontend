@@ -2,36 +2,97 @@
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  color: var(--text); /* #0a0407 */
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
+/* Form container */
 .movie-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.25rem;
   max-width: 500px;
-  margin: 20px auto;
+  margin: 2rem auto;
+  padding: 1.75rem;
+  background: var(--background); /* #fbf6f9 */
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Labels */
 .movie-form label,
 .movie-form .label-text {
-  font-weight: bold;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
 }
 
+/* Inputs and Textarea */
 .movie-form input,
 .movie-form textarea,
-.movie-form button,
-.multi-select-dropdown .dropdown-toggle {
+.movie-form .dropdown-toggle {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0.8rem;
+  border: 1px solid var(--secondary); /* #e2b2cd */
+  border-radius: 6px;
   box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+.movie-form input:focus,
+.movie-form textarea:focus,
+.movie-form .dropdown-toggle:focus {
+  outline: none;
+  border-color: var(--primary); /* #c5428a */
+  box-shadow: 0 0 8px rgba(197, 66, 138, 0.25);
+}
+
+.movie-form input::placeholder,
+.movie-form textarea::placeholder {
+  color: #a1a1a1;
+  opacity: 0.8;
+}
+
+/* Textarea specific */
 .movie-form textarea {
-  height: 100px;
+  height: 130px;
   resize: none;
+}
+
+/* Dropdown toggle with triangle */
+.movie-form .dropdown-toggle {
+  position: relative;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid var(--secondary);
+  transition: border-color 0.3s ease;
+}
+
+.movie-form .dropdown-toggle::after {
+  content: "▾";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.9rem;
+  color: #888;
+  transition: color 0.3s ease;
 }
 
 .multi-select-dropdown {
@@ -52,6 +113,13 @@ h2 {
   padding: 5px 0;
 }
 
+/* Hover effect on dropdown items (labels inside dropdown-menu) */
+.dropdown-menu label:hover {
+  background-color: var(--secondary);
+  color: var(--text);
+  border-radius: 4px;
+}
+
 .multi-select-dropdown label {
   display: flex;
   align-items: center;
@@ -59,27 +127,79 @@ h2 {
   padding: 5px 10px;
   margin: 0;
   cursor: pointer;
+  color: var(--text);
+  transition: color 0.3s ease;
 }
 
-.multi-select-dropdown label input[type="checkbox"] {
+/* Checkbox styles */
+.multi-select-dropdown input[type="checkbox"] {
   margin: 0;
   width: 16px;
   height: 16px;
   cursor: pointer;
+  accent-color: var(--primary);
+  transition: accent-color 0.3s ease;
 }
 
+/* Change checkbox checkmark color when checked */
+.multi-select-dropdown input[type="checkbox"]:checked {
+  accent-color: var(--primary);
+}
+
+/* Change label text color when checkbox is checked */
+/* Works if input is inside label */
+.multi-select-dropdown label input[type="checkbox"]:checked + span,
+.multi-select-dropdown label input[type="checkbox"]:checked {
+  color: var(--primary);
+}
+
+/* Buttons */
 .movie-form button {
-  background: var(--primary);
+  background: var(--primary); /* #c5428a */
   color: #fff;
   border: none;
+  border-radius: 6px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Fixed transition */
 }
 
-.movie-form button[type="button"] {
-  background: var(--primary);
+.movie-form button:hover {
+  background: var(--secondary); /* #e267ab */
+  transform: translateY(-2px); /* Fixed transform */
 }
 
+.movie-form button:active {
+  transform: translateY(0);
+}
+
+.movie-form button.cancel {
+  background: #d1d5db;
+}
+
+.movie-form button.cancel:hover {
+  background: #b1b5bb;
+}
+
+.movie-form button:disabled {
+  background: #e5e7eb;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Error message */
 .error {
-  color: var(--accent);
-  font-size: 14px;
+  color: var(--accent); /* #e267ab */
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Input validation */
+.movie-form input:invalid:not(:placeholder-shown),
+.movie-form textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(226, 103, 171, 0.25);
 }

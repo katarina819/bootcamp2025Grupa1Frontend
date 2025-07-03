@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import "./MovieForm.css";
