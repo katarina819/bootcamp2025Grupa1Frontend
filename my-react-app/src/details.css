@@ -2,36 +2,37 @@
     min-height: 100vh;
     background-color: #f5f7fa;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
+    flex-direction: column;
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
 }
 
 .details-container {
-    max-width: 700px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 30px 40px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
+    max-width: 500px;
+    margin: 3rem auto 1rem;
+    padding: 1.75rem;
+    background: var(--background); /* #fbf6f9 */
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    min-width: 600px;
 }
+
+
 
 .movie-title {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #2c3e50;
+    color: var(--primary);
 }
 
 .under-title {
     display: flex;
     gap: 20px;
-    color: #555;
+    color: var(--accent);
     font-size: 0.95rem;
     margin-bottom: 10px;
 }
@@ -43,7 +44,7 @@
 .inline-container h3 {
     margin-bottom: 4px;
     font-size: 1rem;
-    color: #2c3e50;
+    color: var(--accent);
     display: inline;
     margin: 0 10px 0 0;
     padding: 0;
@@ -51,7 +52,7 @@
 }
 
 .inline-container p {
-    color: #333;
+    color: var(--text);
     font-size: 0.95rem;
     display: inline;
     margin: 0;
@@ -68,6 +69,33 @@
     margin: 0;
     padding: 0;
     color: #333;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.buttons-container button {
+    background: var(--accent); 
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 100px;
+}
+
+.buttons-container button:hover{
+    background-color: var(--primary);
+    box-shadow: 0 0 20px var(--secondary);
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

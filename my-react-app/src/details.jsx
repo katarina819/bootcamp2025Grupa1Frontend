@@ -24,6 +24,20 @@ export default function MovieDetails() {
         };
         fetchMovieDetails();
     }, [movieId]);
+
+    const handleDeleteMovie = async (movieId) => {
+        try {
+            if (confirm("Are you sure you want to delete this movie?")) {
+                    await DeleteMovie(movieId);
+                    alert("Movie deleted.");
+                    navigate("/");
+            }
+        }
+        catch (err) {
+            console.error("Failed to delete: ", err);
+        }
+    }
+
     if (error) return <Error message={error} />;
     if (!movie) return (
             <p>Loading movie...</p>
@@ -67,13 +81,9 @@ export default function MovieDetails() {
             </div>
             <div className="buttons-container">
                 <button onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}>Edit</button>
-                <button onClick={()=>{ 
-                    if (confirm("Are you sure you want to delete this movie?")) {
-                    DeleteMovie(movieId);
-                    alert("Movie deleted.");
-                    navigate("/");
-                }}}>Delete</button>
+                <button onClick={() => {handleDeleteMovie(movieId)}}>Delete</button>
             </div>
         </div>
     );
+    
 }
