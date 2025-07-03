@@ -10,11 +10,14 @@ export default function Home(){
 }
     return(
         <div className="home-container">
-            <div className="buttonas-wrapper">
-                <Link to="/movies"><button className="home-page-btn">Movies</button></Link>
-                <Link to="/add-movie"><button className="home-page-btn">AddMovie</button></Link>
+            <div>
+                <div className="buttons-wrapper">
+                    <Link to="/movies"><button className="home-page-btn">Movies</button></Link>
+                    <Link to="/add-movie"><button className="home-page-btn">AddMovie</button></Link>
+                </div>
+                <Searchbar onSearch={fetchMoviesByName}/>
+
             </div>
-            <Searchbar onSearch={fetchMoviesByName}/>
         </div>
     );
 }
@@ -45,9 +48,8 @@ function Searchbar({ onSearch }) {
     }
 
     return (
-        <div>
+        <div className="search">
             <input type="text" 
-            className="search"
             placeholder="Search movie..."
             value = {query}
             onChange={e => setQuery(e.target.value)}/>
