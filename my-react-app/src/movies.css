@@ -146,6 +146,22 @@ button {
   width: 130px; /* Actions */
 }
 
+.movies-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-controls select {
+  padding: 0.25rem 0.5rem;
+}
 
 
 
