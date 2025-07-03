@@ -35,7 +35,7 @@ function App() {
           <Route
             path="add-movie"
             element={
-              <MovieForm addMovie={addMovie} updateMovie={updateMovie} />
+              <MovieForm addMovie={addMovie} />
             }
           />
         </Route>

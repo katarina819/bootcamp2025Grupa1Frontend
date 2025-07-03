@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './details.css'
+import {DeleteMovie} from './delete';
 
 export default function MovieDetails() {
     const [movie, setMovie] = useState([]);
     const [error, setError] = useState(null);
     const {movieId} = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!movieId) return;
@@ -62,6 +64,15 @@ export default function MovieDetails() {
                     <h3>Description: </h3>
                     <p>{movie.description}</p>
                 </div>
+            </div>
+            <div className="buttons-container">
+                <button onClick={() => navigate('/add-movie', { state: { updateMovie: movie } })}>Edit</button>
+                <button onClick={()=>{ 
+                    if (confirm("Are you sure you want to delete this movie?")) {
+                    DeleteMovie(movieId);
+                    alert("Movie deleted.");
+                    navigate("/");
+                }}}>Delete</button>
             </div>
         </div>
     );
