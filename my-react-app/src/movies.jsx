@@ -29,8 +29,8 @@ const Movies = () => {
         return res.json();
       })
       .then(data => {
-        setMovies(data.items);
-        setTotalCount(data.totalCount);
+        setMovies(data.items || []);
+        setTotalCount(data.totalCount || 0);
         setLoading(false);
       })
       .catch((err) => {
@@ -50,39 +50,38 @@ const Movies = () => {
   }, []);
 
   const handleDeleteMovie = async (movieId) => {
-    const updatedMovies = movies.filter((movie) => movie.id !== movieId);
-    const newTotalCount = totalCount - 1;
-    const newTotalPages = Math.ceil(newTotalCount / pageSize);
+  try {
+    // 1. Wait for backend to delete the movie
+    await DeleteMovie(movieId);
 
-    let filledMovies = [...updatedMovies];
+    // 2. Refetch data from the backend for the current page
+    const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
+    const response = await fetch(
+      `https://localhost:7123/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`
+    );
 
-    if (page < newTotalPages) {
-      try {
-        const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
-        const res = await fetch(
-          `https://localhost:7123/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page + 1}&pageSize=1${genreQuery}`
-        );
-        if (res.ok) {
-          const data = await res.json();
-          if (data.items.length > 0) {
-            filledMovies.push(data.items[0]);
-          }
-        }
-      } catch (err) {
-        console.error("Error pulling next movie:", err);
-      }
-  }
+    if (!response.ok) throw new Error("Failed to refetch movies.");
 
-  setMovies(filledMovies);
-  setTotalCount(newTotalCount);
+    const data = await response.json();
+    const newTotalCount = data.totalCount;
+    const newTotalPages = Math.max(1, Math.ceil(newTotalCount / pageSize));
 
-  if (page > newTotalPages) {
-    setPage(newTotalPages);
+    // 3. Handle edge case: current page has no data, go back one page
+    if (data.items.length === 0 && page > 1) {
+      setPage(page - 1); // This will trigger useEffect to refetch
+    } else {
+      setMovies(data.items);
+      setTotalCount(newTotalCount);
+    }
+  } catch (err) {
+    console.error("Error deleting movie:", err);
+    alert("Failed to delete movie. Please try again.");
   }
 };
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p>Error: {error}</p>;
+  
 
   return (
   <div className="movies-container">
@@ -122,25 +121,31 @@ const Movies = () => {
           </tr>
         </thead>
         <tbody>
-          {movies.map((movie) => (
-            <tr key={movie.id}>
-              <td>{movie.name}</td>
-              <td>{movie.duration}</td>
-              <td>{movie.rating}</td>
-              <td>{movie.releaseYear}</td>
-              <td>{movie.genres ? movie.genres.join(' | ') : 'N/A'}</td>
-              <td>
-                <button
-                  onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}
-                  >
-                  Edit
-                  </button>
-                  <button onClick={() => {
-                    DeleteMovie(movie.id);
-                    handleDeleteMovie(movie.id);}}>Delete Movie</button>
+          {movies.length === 0 ? (
+            <tr>
+              <td colSpan="6" style={{ textAlign: 'center', padding: '1rem' }}>
+                No movies found.
               </td>
             </tr>
-          ))}
+          ) : (
+            movies.map((movie) => (
+              <tr key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
+                <td>{movie.name}</td>
+                <td>{movie.duration}</td>
+                <td>{movie.rating}</td>
+                <td>{movie.releaseYear}</td>
+                <td>{movie.genres ? movie.genres.join(' , ') : 'N/A'}</td>
+                <td>
+                  <button
+                    onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}
+                    >
+                    Edit
+                    </button>
+                    <button onClick={() => {
+                      handleDeleteMovie(movie.id);}}>Delete Movie</button>
+                </td>
+              </tr>
+          )))}
         </tbody>
       </table>
       <div className="pagination">
