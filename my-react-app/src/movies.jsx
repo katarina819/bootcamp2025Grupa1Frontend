@@ -49,19 +49,37 @@ const Movies = () => {
       .catch(err => console.error(err));
   }, []);
 
-  const handleDeleteMovie = (movieId) => {
-   
-    const updatedMovies = movies.filter(movie => movie.id !== movieId);
-    setMovies(updatedMovies);
-
+  const handleDeleteMovie = async (movieId) => {
+    const updatedMovies = movies.filter((movie) => movie.id !== movieId);
     const newTotalCount = totalCount - 1;
-    setTotalCount(newTotalCount);
-
     const newTotalPages = Math.ceil(newTotalCount / pageSize);
-    if (page > newTotalPages) {
-      setPage(newTotalPages);
-    }
-  };
+
+    let filledMovies = [...updatedMovies];
+
+    if (page < newTotalPages) {
+      try {
+        const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
+        const res = await fetch(
+          `https://localhost:7123/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page + 1}&pageSize=1${genreQuery}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          if (data.items.length > 0) {
+            filledMovies.push(data.items[0]);
+          }
+        }
+      } catch (err) {
+        console.error("Error pulling next movie:", err);
+      }
+  }
+
+  setMovies(filledMovies);
+  setTotalCount(newTotalCount);
+
+  if (page > newTotalPages) {
+    setPage(newTotalPages);
+  }
+};
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p>Error: {error}</p>;
