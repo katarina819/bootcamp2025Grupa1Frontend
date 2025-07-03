@@ -225,7 +225,7 @@ function MovieForm({ addMovie, updateMovie, editingMovie }) {
           value={formData.name}
           onChange={handleChange}
           required
-          placeholder="Enter Movie Title"
+          placeholder="Enter movie title"
           autoComplete="off"
         />
         <label htmlFor="duration">Duration (minutes):</label>
