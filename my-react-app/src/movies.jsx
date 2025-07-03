@@ -15,16 +15,10 @@ const Movies = () => {
   const [totalCount, setTotalCount] = useState (0); 
 
   useEffect(() => {
-<<<<<<< HEAD
-    fetch("https://localhost:7123/api/Movie/get-all-movies")
-      .then((res) => {
-        if (!res.ok) throw new Error("Network error");
-=======
     setLoading(true);
     fetch(`https://localhost:7123/api/Movie/get-all-movies?page=${page}&pageSize=${pageSize}`)
       .then(res => {
         if (!res.ok) throw new Error('Network error');
->>>>>>> 3a545a9 (Dorada movie list - paginacija)
         return res.json();
       })
       .then(data => {
@@ -160,22 +154,7 @@ const Movies = () => {
           ))}
         </tbody>
       </table>
-    </div>
-  );
-};
-
-  {/* Dodaj prazne redove da tablica uvijek ima isti broj redova */}
-  {emptyRowsCount > 0 && [...Array(emptyRowsCount)].map((_, idx) => (
-    <tr key={`empty-${idx}`} className="empty-row">
-      <td colSpan="6">&nbsp;</td>
-    </tr>
-  ))}
-</tbody>
-
-      </table>
-
-   
-    <div className="pagination">
+      <div className="pagination">
       <button disabled={page === 1} onClick={() => setPage(prev => prev - 1)}>
         Previous
       </button>
@@ -187,9 +166,10 @@ const Movies = () => {
         Next
       </button>
     </div>
-  </div>
-);
+    </div>
+  );
+};
 
-}
+
 export default Movies;
 
