@@ -4,9 +4,9 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import "./MovieForm.css";
 
-function MovieForm({ addMovie }) {
+function MovieForm({ addMovie, updateMovie }) {
   const location = useLocation();
-  const editingMovie = location.state?.updateMovie;
+  const editingMovie = location.state?.editingMovie;
 
   const [formData, setFormData] = useState({
     id: "",

@@ -66,7 +66,7 @@ export default function MovieDetails() {
                 </div>
             </div>
             <div className="buttons-container">
-                <button onClick={() => navigate('/add-movie', { state: { updateMovie: movie } })}>Edit</button>
+                <button onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}>Edit</button>
                 <button onClick={()=>{ 
                     if (confirm("Are you sure you want to delete this movie?")) {
                     DeleteMovie(movieId);
