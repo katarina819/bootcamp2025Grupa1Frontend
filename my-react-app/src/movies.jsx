@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./movies.css";
+import { DeleteMovie } from "./delete";
+import { useNavigate } from "react-router-dom";
 
 const Movies = () => {
+  const navigate = useNavigate();
+
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const [editingMovieId, setEditingMovieId] = useState(null);
-  const [editedName, setEditedName] = useState('');
-  const [activeButton, setActiveButton] = useState({ movieId: null, type: null });
 
   const [page, setPage] = useState(1);
   const [pageSize] = useState(5);
@@ -49,49 +49,9 @@ const Movies = () => {
       .catch(err => console.error(err));
   }, []);
 
-  const startEditing = (movie) => {
-    setEditingMovieId(movie.id);
-    setEditedName(movie.name);
-    setActiveButton({ movieId: movie.id, type: 'edit' });
-  };
-
-  const cancelEditing = () => {
-    setEditingMovieId(null);
-    setEditedName('');
-    setActiveButton({ movieId: null, type: null });
-  };
-
-  const handleUpdateMovie = async (movieId) => {
-    try {
-      const movieToUpdate = movies.find(m => m.id === movieId);
-      const updatedMovie = { ...movieToUpdate, name: editedName };
-
-      const response = await fetch(`https://localhost:7123/api/Movie/${movieId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedMovie),
-      });
-
-      if (!response.ok) throw new Error('Failed to update movie');
-
-      setMovies(movies.map(m => (m.id === movieId ? updatedMovie : m)));
-      setEditingMovieId(null);
-      setEditedName('');
-      setActiveButton({ movieId: null, type: null });
-    } catch (error) {
-      alert('Error updating movie: ' + error.message);
-    }
-  };
-
-  const handleDeleteMovie = async (movieId) => {
-    try {
-      const response = await fetch(`https://localhost:7123/api/Movie/${movieId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw new Error('Failed to delete movie');
-
-      const updatedMovies = movies.filter(movie => movie.id !== movieId);
+  const handleDeleteMovie = (movieId) => {
+   
+    const updatedMovies = movies.filter(movie => movie.id !== movieId);
     setMovies(updatedMovies);
 
     const newTotalCount = totalCount - 1;
@@ -101,14 +61,10 @@ const Movies = () => {
     if (page > newTotalPages) {
       setPage(newTotalPages);
     }
-    } catch (error) {
-      alert('Error deleting movie: ' + error.message);
-    }
   };
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p>Error: {error}</p>;
-  const emptyRowsCount = pageSize - movies.length;
 
   return (
   <div className="movies-container">
@@ -150,45 +106,20 @@ const Movies = () => {
         <tbody>
           {movies.map((movie) => (
             <tr key={movie.id}>
-              <td>
-                {editingMovieId === movie.id ? (
-                  <input
-                    type="text"
-                    value={editedName}
-                    onChange={e => setEditedName(e.target.value)}
-                  />
-                ) : (
-                  movie.name
-                )}
-              </td>
+              <td>{movie.name}</td>
               <td>{movie.duration}</td>
               <td>{movie.rating}</td>
               <td>{movie.releaseYear}</td>
               <td>{movie.genres ? movie.genres.join(' | ') : 'N/A'}</td>
               <td>
-                {editingMovieId === movie.id ? (
-                  <>
-                    <button
-                      className={activeButton.movieId === movie.id && activeButton.type === 'update' ? 'button-active' : ''}
-                      onClick={() => {
-                        handleUpdateMovie(movie.id);
-                      }}
-                    >
-                      Update Movie
-                    </button>
-                    <button onClick={cancelEditing}>Cancel</button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className={activeButton.movieId === movie.id && activeButton.type === 'edit' ? 'button-active' : ''}
-                      onClick={() => startEditing(movie)}
-                    >
-                      Edit
-                    </button>
-                    <button onClick={() => handleDeleteMovie(movie.id)}>Delete Movie</button>
-                  </>
-                )}
+                <button
+                  onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}
+                  >
+                  Edit
+                  </button>
+                  <button onClick={() => {
+                    DeleteMovie(movie.id);
+                    handleDeleteMovie(movie.id);}}>Delete Movie</button>
               </td>
             </tr>
           ))}
