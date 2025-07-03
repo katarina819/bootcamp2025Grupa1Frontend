@@ -114,7 +114,6 @@ const Movies = () => {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           {movies.map((movie) => (
             <tr key={movie.id}>
               <td>
@@ -164,50 +163,6 @@ const Movies = () => {
     </div>
   );
 };
-=======
-  {movies.map(movie => (
-    <tr key={movie.id}>
-      <td>
-        {editingMovieId === movie.id ? (
-          <input
-            type="text"
-            value={editedName}
-            onChange={e => setEditedName(e.target.value)}
-          />
-        ) : (
-          movie.name
-        )}
-      </td>
-      <td>{movie.duration}</td>
-      <td>{movie.rating}</td>
-      <td>{movie.releaseYear}</td>
-      <td>{movie.genres ? movie.genres.join(' | ') : 'N/A'}</td>
-      <td className="action-buttons">
-        {editingMovieId === movie.id ? (
-          <>
-            <button
-              className={activeButton.movieId === movie.id && activeButton.type === 'update' ? 'button-active' : ''}
-              onClick={() => handleUpdateMovie(movie.id)}
-            >
-              Update Movie
-            </button>
-            <button onClick={cancelEditing}>Cancel</button>
-          </>
-        ) : (
-          <>
-            <button
-              className={activeButton.movieId === movie.id && activeButton.type === 'edit' ? 'button-active' : ''}
-              onClick={() => startEditing(movie)}
-            >
-              Edit
-            </button>
-            <button onClick={() => handleDeleteMovie(movie.id)}>Delete<br / >Movie</button>
-          </>
-        )}
-      </td>
-    </tr>
-  ))}
->>>>>>> 3a545a9 (Dorada movie list - paginacija)
 
   {/* Dodaj prazne redove da tablica uvijek ima isti broj redova */}
   {emptyRowsCount > 0 && [...Array(emptyRowsCount)].map((_, idx) => (
