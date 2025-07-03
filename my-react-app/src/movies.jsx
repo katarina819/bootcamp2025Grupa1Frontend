@@ -14,9 +14,16 @@ const Movies = () => {
   const [pageSize] = useState(5);
   const [totalCount, setTotalCount] = useState (0); 
 
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const [genres, setGenres] = useState([]);
+  const [selectedGenreId, setSelectedGenreId] = useState('');
+
   useEffect(() => {
     setLoading(true);
-    fetch(`https://localhost:7123/api/Movie/get-all-movies?page=${page}&pageSize=${pageSize}`)
+    const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
+    fetch(`https://localhost:7123/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`)
       .then(res => {
         if (!res.ok) throw new Error('Network error');
         return res.json();
@@ -30,7 +37,17 @@ const Movies = () => {
         setError(err.message);
         setLoading(false);
       });
-  }, [page, pageSize]);
+  }, [sortBy, sortOrder, page, pageSize, selectedGenreId]);
+
+  useEffect(() => {
+    fetch('https://localhost:7123/api/Genres')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch genres');
+        return res.json();
+      })
+      .then(data => setGenres(data))
+      .catch(err => console.error(err));
+  }, []);
 
   const startEditing = (movie) => {
     setEditingMovieId(movie.id);
@@ -94,8 +111,31 @@ const Movies = () => {
   const emptyRowsCount = pageSize - movies.length;
 
   return (
-    <div className="movies-container">
+  <div className="movies-container">
+    <div className="movies-header">
       <h2>Movies List</h2>
+      <div className="sort-controls">
+        <label>Sort by: </label>
+        <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+          <option value="name">Name</option>
+          <option value="duration">Duration</option>
+          <option value="rating">Rating</option>
+          <option value="releaseyear">ReleaseYear</option>
+        </select>
+
+        <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+        <label>Genre: </label>
+  <select value={selectedGenreId} onChange={e => setSelectedGenreId(e.target.value)}>
+    <option value="">All genres</option>
+    {genres.map(g => (
+      <option key={g.id} value={g.id}>{g.name}</option>
+    ))}
+  </select>
+      </div>
+    </div>
       <table className="movies-table">
         <thead>
           <tr>
