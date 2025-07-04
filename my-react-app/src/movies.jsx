@@ -10,7 +10,7 @@ const Movies = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [pageSize] = useState(5);
   const [totalCount, setTotalCount] = useState (0); 
 
