@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 .movies-table {
   width: 100%;
   max-width: 1000px;
@@ -29,7 +31,7 @@
 }
 
 .movies-table th {
-  background-color: #4CAF50;
+  background-color: var(--accent);
   color: white;
   font-weight: 700;
   text-transform: uppercase;
@@ -43,7 +45,7 @@
 }
 
 .movies-table tr:hover {
-  background-color: #d9f0e5;
+  background-color: var(--secondary);
   cursor: pointer;
 }
 
@@ -114,6 +116,8 @@
 
 button {
   text-align: center;
+  background-color: var(--accent);
+  color: white;
 }
 
 .movies-table th:nth-child(1),
