@@ -137,11 +137,14 @@ const Movies = () => {
                 <td>{movie.genres ? movie.genres.join(' , ') : 'N/A'}</td>
                 <td>
                   <button
-                    onClick={() => navigate('/add-movie', { state: { editingMovie: movie } })}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate('/add-movie', { state: { editingMovie: movie } });}}
                     >
                     Edit
                     </button>
-                    <button onClick={() => {
+                    <button onClick={(e) => {
+                      e.stopPropagation();
                       handleDeleteMovie(movie.id);}}>Delete Movie</button>
                 </td>
               </tr>
