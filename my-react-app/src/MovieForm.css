@@ -3,12 +3,12 @@
 h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: var(--text); /* #0a0407 */
+  color: var(--text); 
   font-size: 1.8rem;
   font-weight: 600;
 }
 
-/* Form container */
+
 .movie-form {
   display: flex;
   flex-direction: column;
@@ -16,19 +16,19 @@ h2 {
   max-width: 500px;
   margin: 2rem auto;
   padding: 1.75rem;
-  background: var(--background); /* #fbf6f9 */
+  background: var(--background); 
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Form group */
+
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
 
-/* Labels */
+
 .movie-form label,
 .movie-form .label-text {
   font-weight: 600;
@@ -38,14 +38,13 @@ h2 {
   display: block;
 }
 
-/* Inputs and Textarea */
+
 .movie-form input,
 .movie-form textarea,
 .movie-form .dropdown-toggle {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid var(--secondary); /* #e2b2cd */
-  border-radius: 6px;
+  border: 1px solid var(--secondary); 
   box-sizing: border-box;
   font-size: 1rem;
   color: var(--text);
@@ -58,7 +57,7 @@ h2 {
 .movie-form textarea:focus,
 .movie-form .dropdown-toggle:focus {
   outline: none;
-  border-color: var(--primary); /* #c5428a */
+  border-color: var(--primary); 
   box-shadow: 0 0 8px rgba(197, 66, 138, 0.25);
 }
 
@@ -68,13 +67,13 @@ h2 {
   opacity: 0.8;
 }
 
-/* Textarea specific */
+
 .movie-form textarea {
   height: 130px;
   resize: none;
 }
 
-/* Dropdown toggle with triangle */
+
 .movie-form .dropdown-toggle {
   position: relative;
   cursor: pointer;
@@ -113,7 +112,7 @@ h2 {
   padding: 5px 0;
 }
 
-/* Hover effect on dropdown items (labels inside dropdown-menu) */
+
 .dropdown-menu label:hover {
   background-color: var(--secondary);
   color: var(--text);
@@ -131,7 +130,7 @@ h2 {
   transition: color 0.3s ease;
 }
 
-/* Checkbox styles */
+
 .multi-select-dropdown input[type="checkbox"] {
   margin: 0;
   width: 16px;
@@ -141,21 +140,21 @@ h2 {
   transition: accent-color 0.3s ease;
 }
 
-/* Change checkbox checkmark color when checked */
+
 .multi-select-dropdown input[type="checkbox"]:checked {
   accent-color: var(--primary);
 }
 
-/* Change label text color when checkbox is checked */
-/* Works if input is inside label */
+
+
 .multi-select-dropdown label input[type="checkbox"]:checked + span,
 .multi-select-dropdown label input[type="checkbox"]:checked {
   color: var(--primary);
 }
 
-/* Buttons */
+
 .movie-form button {
-  background: var(--primary); /* #c5428a */
+  background: var(--primary); 
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -163,12 +162,12 @@ h2 {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Fixed transition */
+  transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .movie-form button:hover {
-  background: var(--secondary); /* #e267ab */
-  transform: translateY(-2px); /* Fixed transform */
+  background: var(--secondary); 
+  transform: translateY(-2px); 
 }
 
 .movie-form button:active {
@@ -189,15 +188,15 @@ h2 {
   opacity: 0.7;
 }
 
-/* Error message */
+
 .error {
-  color: var(--accent); /* #e267ab */
+  color: var(--accent); 
   font-size: 0.9rem;
   margin-top: 0.5rem;
   text-align: center;
 }
 
-/* Input validation */
+
 .movie-form input:invalid:not(:placeholder-shown),
 .movie-form textarea:invalid:not(:placeholder-shown) {
   border-color: var(--accent);

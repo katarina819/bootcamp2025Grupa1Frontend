@@ -1,5 +1,5 @@
 import axios from "axios";
-import Movies from "./movies.jsx"; // ili './Movies.jsx' ako je točan naziv datoteke
+import Movies from "./movies.jsx"; 
 import MovieForm from "./MovieForm.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./navbar";

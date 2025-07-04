@@ -14,7 +14,7 @@
     max-width: 500px;
     margin: 3rem auto 1rem;
     padding: 1.75rem;
-    background: var(--background); /* #fbf6f9 */
+    background: var(--background); 
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     min-width: 600px;

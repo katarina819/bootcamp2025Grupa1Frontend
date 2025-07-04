@@ -9,7 +9,7 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
   border-radius: 12px;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--background);
   transition: box-shadow 0.3s ease;
   margin-bottom: 4px;
   
@@ -17,12 +17,12 @@
 
  .movies-table tbody tr:last-child td {
   padding-top: 18px;
-  padding-bottom: 18px; /* Smanji padding na dnu zadnjeg reda */
+  padding-bottom: 18px; 
  } 
 
 .movies-table th,
 .movies-table td {
-  padding: 18px 24px;       /* Povećani razmaci u ćelijama */
+  padding: 18px 24px;      
   border-bottom: 1px solid #e2e2e2;
   text-align: left;
   vertical-align: middle;
@@ -46,20 +46,20 @@
 
 .movies-table tr:hover {
   background-color: var(--secondary);
-  cursor: pointer;
+  
 }
 
 .movies-container h2 {
   text-align: center;
-  margin-bottom: 12px; /* možeš dodati razmak ispod naslova */
+  margin-bottom: 12px; 
   font-weight: 700;
   font-size: 28px;
   color: #333;
 }
 
 .movies-container {
-  margin-bottom: 0; /* ako ima */
-  padding-bottom: 0; /* ako ima */
+  margin-bottom: 0;
+  padding-bottom: 0; 
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 12px; 
@@ -72,8 +72,8 @@
 
 
 .pagination {
-  min-height: 10px;    /* minimalna visina paginacije */
-  margin-top: 12px;    /* razmak od tablice prema gore */
+  min-height: 10px;    
+  margin-top: 12px;    
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,44 +110,52 @@
 
 .action-buttons {
   display: flex;
-  flex-direction: column; /* vertikalno */
-  gap: 6px; /* malo razmaka između dugmadi */
+  flex-direction: column;
+  gap: 6px;
 }
 
 button {
   text-align: center;
   background-color: var(--accent);
   color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 100px;
+  padding: 5px 0;
+  border: 1px solid var(--primary);
+  margin: 2px 0;
 }
 
 .movies-table th:nth-child(1),
 .movies-table td:nth-child(1) {
-  width: 250px; /* širina kolone Title */
+  width: 250px; 
 }
 
 .movies-table th:nth-child(2),
 .movies-table td:nth-child(2) {
-  width: 100px; /* Duration */
+  width: 100px;
 }
 
 .movies-table th:nth-child(3),
 .movies-table td:nth-child(3) {
-  width: 80px; /* Rating */
+  width: 80px; 
 }
 
 .movies-table th:nth-child(4),
 .movies-table td:nth-child(4) {
-  width: 80px; /* Year */
+  width: 80px; 
 }
 
 .movies-table th:nth-child(5),
 .movies-table td:nth-child(5) {
-  width: 150px; /* Genre */
+  width: 150px;
 }
 
 .movies-table th:nth-child(6),
 .movies-table td:nth-child(6) {
-  width: 130px; /* Actions */
+  width: 130px; 
 }
 
 .movies-header {

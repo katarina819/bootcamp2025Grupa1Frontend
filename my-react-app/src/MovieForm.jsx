@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Add useNavigate
+import { useLocation, useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import "./MovieForm.css";
 
 function MovieForm({ addMovie, updateMovie }) {
   const location = useLocation();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const editingMovie = location.state?.editingMovie;
 
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ function MovieForm({ addMovie, updateMovie }) {
   const genreDropdownRef = useRef(null);
   const languageDropdownRef = useRef(null);
 
-  // Fetch genres and languages
+  
   useEffect(() => {
     const fetchGenreAndLanguage = async () => {
       try {
@@ -54,7 +54,7 @@ function MovieForm({ addMovie, updateMovie }) {
     fetchGenreAndLanguage();
   }, []);
 
-  // Populate form when editing
+  
   useEffect(() => {
     if (editingMovie) {
       const genres = editingMovie.genres || [];
@@ -108,7 +108,7 @@ function MovieForm({ addMovie, updateMovie }) {
     }
   }, [editingMovie, availableGenres, availableLanguages]);
 
-  // Handle clicks outside dropdowns
+ 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -195,7 +195,7 @@ function MovieForm({ addMovie, updateMovie }) {
       } else {
         await addMovie(movie);
       }
-      // Reset form
+      
       setFormData({
         id: "",
         name: "",
@@ -209,7 +209,7 @@ function MovieForm({ addMovie, updateMovie }) {
       });
       setSelectedGenreIds([]);
       setSelectedLanguageIds([]);
-      // Navigate to movie page after successful submission
+      
       navigate("/movies");
     } catch (error) {
       console.error("Error submitting movie:", error);
@@ -220,7 +220,7 @@ function MovieForm({ addMovie, updateMovie }) {
   };
 
   const handleCancel = () => {
-    // Reset form
+    
     setFormData({
       id: "",
       name: "",
@@ -234,7 +234,7 @@ function MovieForm({ addMovie, updateMovie }) {
     });
     setSelectedGenreIds([]);
     setSelectedLanguageIds([]);
-    // Navigate to movie page
+    
     navigate("/movies");
   };
 
@@ -397,7 +397,7 @@ function MovieForm({ addMovie, updateMovie }) {
           <button
             type="button"
             className="cancel"
-            onClick={handleCancel} // Use handleCancel function
+            onClick={handleCancel} 
           >
             Cancel
           </button>

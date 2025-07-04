@@ -51,10 +51,10 @@ const Movies = () => {
 
   const handleDeleteMovie = async (movieId) => {
   try {
-    // 1. Wait for backend to delete the movie
+    
     await DeleteMovie(movieId);
 
-    // 2. Refetch data from the backend for the current page
+    
     const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
     const response = await fetch(
       `https://localhost:7123/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`
@@ -66,9 +66,9 @@ const Movies = () => {
     const newTotalCount = data.totalCount;
     const newTotalPages = Math.max(1, Math.ceil(newTotalCount / pageSize));
 
-    // 3. Handle edge case: current page has no data, go back one page
+    
     if (data.items.length === 0 && page > 1) {
-      setPage(page - 1); // This will trigger useEffect to refetch
+      setPage(page - 1); 
     } else {
       setMovies(data.items);
       setTotalCount(newTotalCount);
