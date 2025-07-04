@@ -183,7 +183,7 @@ function MovieForm({ addMovie, updateMovie }) {
       duration: parseInt(formData.duration) || 0,
       releaseYear: parseInt(formData.releaseYear) || 0,
       rating: formData.rating ? parseFloat(formData.rating) : null,
-      description: formData.description || null,
+      description: formData.description || "",
       directorName: formData.directorName,
       genres: selectedGenreIds,
       languages: selectedLanguageIds,
