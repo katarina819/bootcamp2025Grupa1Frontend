@@ -8,7 +8,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Home(){
     async function fetchMoviesByName(query) {
-        const response = await axios.get(`${API_URL}/Movie/search?filter=${encodeURIComponent(query)}`);
+        const response = await axios.get(`${API_URL}/api/Movie/search?filter=${encodeURIComponent(query)}`
+);
         return response.data;
 }
     return(

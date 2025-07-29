@@ -26,7 +26,8 @@ const Movies = () => {
   useEffect(() => {
     setLoading(true);
     const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
-    fetch(`${API_URL}/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`)
+    fetch(`${API_URL}/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`)
+
       .then(res => {
         if (!res.ok) throw new Error('Network error');
         return res.json();
@@ -60,8 +61,9 @@ const Movies = () => {
     
     const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
     const response = await fetch(
-      `${API_URL}/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`
-    );
+  `${API_URL}/api/Movie/get-movies-sorted?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}&pageSize=${pageSize}${genreQuery}`
+);
+
 
     if (!response.ok) throw new Error("Failed to refetch movies.");
 

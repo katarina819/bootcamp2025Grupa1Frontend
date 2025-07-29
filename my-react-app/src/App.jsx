@@ -12,7 +12,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function App() {
   const addMovie = async (movie) => {
     try {
-      await axios.post(`${API_URL}/Movie`, movie);
+      await axios.post(`${API_URL}/Movie/add-movie`, movie);
       alert("Movie added successfully!");
     } catch (err) {
       throw new Error(err.response?.data || err.message);
@@ -21,7 +21,7 @@ function App() {
 
   const updateMovie = async (movie) => {
     try {
-      await axios.put(`${API_URL}/Movie`, movie);
+      await axios.put(`${API_URL}/Movie/update-movie`, movie);
       alert("Movie updated successfully!");
     } catch (err) {
       throw new Error(err.response?.data || err.message);
