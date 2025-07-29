@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# bootcamp2025Grupa1Frontend
-=======
-# Bootcamp2025Grupa1Frontend
-
+# Bootcamp2025Grupa1Frontendapp
 This is the frontend application for the Bootcamp 2025 Group 1 project.  
 It is a React application bootstrapped with Vite and uses modern React libraries and tools.
 
