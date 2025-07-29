@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export default function Home(){
     async function fetchMoviesByName(query) {
-        const response = await axios.get(`https://localhost:7123/api/Movie/search?filter=${encodeURIComponent(query)}`);
+        const response = await axios.get(`${API_URL}/Movie/search?filter=${encodeURIComponent(query)}`);
         return response.data;
 }
     return(

@@ -9,7 +9,7 @@ import MovieDetails from "./details";
 function App() {
   const addMovie = async (movie) => {
     try {
-      await axios.post("https://localhost:7123/api/Movie/add-movie", movie);
+      await axios.post(`${API_URL}/Movie`, movie);
       alert("Movie added successfully!");
     } catch (err) {
       throw new Error(err.response?.data || err.message);
@@ -18,7 +18,7 @@ function App() {
 
   const updateMovie = async (movie) => {
     try {
-      await axios.put("https://localhost:7123/api/Movie/update-movie", movie);
+      await axios.put(`${API_URL}/Movie`, movie);
       alert("Movie updated successfully!");
     } catch (err) {
       throw new Error(err.response?.data || err.message);
