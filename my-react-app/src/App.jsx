@@ -6,6 +6,9 @@ import Navbar from "./navbar";
 import Home from "./home";
 import MovieDetails from "./details";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const addMovie = async (movie) => {
     try {

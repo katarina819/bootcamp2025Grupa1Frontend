@@ -4,6 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './details.css'
 import {DeleteMovie} from './delete';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function MovieDetails() {
     const [movie, setMovie] = useState([]);
     const [error, setError] = useState(null);

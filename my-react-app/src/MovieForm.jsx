@@ -4,6 +4,9 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import "./MovieForm.css";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 function MovieForm({ addMovie, updateMovie }) {
   const location = useLocation();
   const navigate = useNavigate(); 

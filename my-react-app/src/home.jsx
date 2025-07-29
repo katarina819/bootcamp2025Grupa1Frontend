@@ -3,6 +3,9 @@ import {Link, useNavigate } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Home(){
     async function fetchMoviesByName(query) {
         const response = await axios.get(`${API_URL}/Movie/search?filter=${encodeURIComponent(query)}`);

@@ -11,7 +11,7 @@ export default defineConfig({
     port: 5172,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL,
+        target: 'https://bootcamp2025grupa1.onrender.com',  // bez /api na kraju
         changeOrigin: true,
         secure: false,
       }
