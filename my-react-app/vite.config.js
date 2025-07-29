@@ -11,12 +11,12 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5172,
       proxy: {
-        '/api': {
-          target: env.VITE_API_URL ? env.VITE_API_URL.replace('/api', '') : '',
-          changeOrigin: true,
-          secure: false,
-        }
-      }
+  '/api': {
+    target: env.VITE_API_URL,
+    changeOrigin: true,
+    secure: false,
+  }
+}
     }
   }
 })

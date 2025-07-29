@@ -43,7 +43,7 @@ const Movies = () => {
   }, [sortBy, sortOrder, page, pageSize, selectedGenreId]);
 
   useEffect(() => {
-    fetch(`${API_URL}/Genres`)
+    fetch(`${API_URL}/api/Genres`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch genres');
         return res.json();
