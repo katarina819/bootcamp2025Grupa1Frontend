@@ -36,12 +36,12 @@ function MovieForm({ addMovie, updateMovie }) {
   const languageDropdownRef = useRef(null);
 
   
-  useEffect(() => {
+    useEffect(() => {
     const fetchGenreAndLanguage = async () => {
       try {
-        const genreResponse = await axios.get(`${API_URL}/genres`);
+        const genreResponse = await axios.get('${API_URL}/api/Genres');
         setAvailableGenres(genreResponse.data.items || genreResponse.data);
-        const languageResponse = await axios.get(`${API_URL}/language`);
+        const languageResponse = await axios.get('${API_URL}/Language');
         setAvailableLanguages(
           languageResponse.data.items || languageResponse.data
         );
