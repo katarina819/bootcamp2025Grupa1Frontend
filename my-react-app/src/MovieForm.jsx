@@ -39,9 +39,9 @@ function MovieForm({ addMovie, updateMovie }) {
     useEffect(() => {
     const fetchGenreAndLanguage = async () => {
       try {
-        const genreResponse = await axios.get('${API_URL}/api/Genres');
+        const genreResponse = await axios.get(`${API_URL}/Genres`);
         setAvailableGenres(genreResponse.data.items || genreResponse.data);
-        const languageResponse = await axios.get('${API_URL}/Language');
+        const languageResponse = await axios.get(`${API_URL}/Language`);
         setAvailableLanguages(
           languageResponse.data.items || languageResponse.data
         );
