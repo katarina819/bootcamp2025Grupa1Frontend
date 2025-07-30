@@ -19,7 +19,8 @@ export default function MovieDetails() {
         setError(null);
         const fetchMovieDetails = async () => {
             try {
-                 const response = await axios.get(`${API_URL}/api/movies/${movieId}`);
+                 const response = await axios.get(`${API_URL}/api/movie/${movieId}`);
+
 
                 setMovie(response.data);
             } catch (err) {
