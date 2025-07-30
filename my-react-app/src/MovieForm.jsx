@@ -6,6 +6,7 @@ import "./MovieForm.css";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
+console.log("API_URL is", API_URL);
 
 function MovieForm({ addMovie, updateMovie }) {
   const location = useLocation();
