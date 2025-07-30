@@ -37,22 +37,21 @@ function MovieForm({ addMovie, updateMovie }) {
 
   
   useEffect(() => {
-  const fetchGenreAndLanguage = async () => {
-    try {
-      const genresResponse = await axios.get(`${API_URL}/genres`);
-      setAvailableGenres(genresResponse.data);
-
-      const languagesResponse = await axios.get(`${API_URL}/language`);
-      setAvailableLanguages(languagesResponse.data);
-    } catch (error) {
-      console.error("Error fetching genres or languages:", error);
-      setError("Failed to load genres or languages.");
-    }
-  };
-
-  fetchGenreAndLanguage();
-}, []);
-
+    const fetchGenreAndLanguage = async () => {
+      try {
+        const genresResponse = await axios.get(`${API_URL}/genres`);
+        setAvailableGenres(genresResponse.data.items || genresResponse.data);
+        const languagesResponse = await axios.get(`${API_URL}/language`);
+        setAvailableLanguages(
+          languagesResponse.data.items || languagesResponse.data
+        );
+      } catch (error) {
+        console.error("Error fetching genres or languages:", error);
+        setError("Failed to load genres or languages.");
+      }
+    };
+    fetchGenreAndLanguage();
+  }, []);
 
   
   useEffect(() => {
