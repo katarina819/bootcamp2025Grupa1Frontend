@@ -126,35 +126,45 @@ const Movies = () => {
           </tr>
         </thead>
         <tbody>
-          {movies.length === 0 ? (
-            <tr>
-              <td colSpan="6" style={{ textAlign: 'center', padding: '1rem' }}>
-                No movies found.
-              </td>
-            </tr>
-          ) : (
-            movies.map((movie) => (
-              <tr key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
-                <td>{movie.name}</td>
-                <td>{movie.duration}</td>
-                <td>{movie.rating}</td>
-                <td>{movie.releaseYear}</td>
-                <td>{movie.genres ? movie.genres.join(' , ') : 'N/A'}</td>
-                <td>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate('/add-movie', { state: { editingMovie: movie } });}}
-                    >
-                    Edit
-                    </button>
-                    <button onClick={(e) => {
-                      e.stopPropagation();
-                      handleDeleteMovie(movie.id);}}>Delete Movie</button>
-                </td>
-              </tr>
-          )))}
-        </tbody>
+  {movies.length === 0 ? (
+    <tr>
+      <td colSpan="6" style={{ textAlign: 'center', padding: '1rem' }}>
+        No movies found.
+      </td>
+    </tr>
+  ) : (
+    movies.map((movie) => (
+      <tr key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
+        <td data-label="Title">{movie.name}</td>
+        <td data-label="Duration (min)">{movie.duration}</td>
+        <td data-label="Rating">{movie.rating}</td>
+        <td data-label="Year">{movie.releaseYear}</td>
+        <td data-label="Genre">{movie.genres ? movie.genres.join(' , ') : 'N/A'}</td>
+        <td data-label="Actions">
+          <div className="action-buttons">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate('/add-movie', { state: { editingMovie: movie } });
+              }}
+            >
+              Edit
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDeleteMovie(movie.id);
+              }}
+            >
+              Delete Movie
+            </button>
+          </div>
+        </td>
+      </tr>
+    ))
+  )}
+</tbody>
+
       </table>
       <div className="pagination">
       <button disabled={page === 1} onClick={() => setPage(prev => prev - 1)}>

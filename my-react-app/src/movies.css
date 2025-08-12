@@ -176,59 +176,51 @@ button {
 }
 
 @media (max-width: 768px) {
-  .movies-table {
-    box-shadow: none;
-    border-radius: 0;
-  }
-
   .movies-table tbody tr {
     display: block;
     margin-bottom: 1.5rem;
-    padding: 12px;
+    padding: 16px;
     border: 1px solid var(--secondary);
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
   .movies-table td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 12px;
+    display: block;
+    padding: 8px 0;
     border: none;
     width: 100%;
   }
 
+  /* Labela i vrijednost svaki u zasebnom retku */
   .movies-table td::before {
     content: attr(data-label);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--accent);
-    flex-shrink: 0;
-    width: 120px;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
   }
 
-  /* Akcijske tipke u jednom redu */
+  /* Vrijednost neka bude malo veća i tamnija */
+  .movies-table td {
+    font-size: 1rem;
+    color: #222;
+  }
+
+  /* Action buttons u jednom redu i s razmakom */
   .action-buttons {
     flex-direction: row;
     justify-content: flex-start;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .movies-table td::before {
-    width: 90px;
-    font-size: 0.8rem;
-  }
-
-  .movies-table td {
-    padding: 6px 8px;
-    font-size: 0.85rem;
+    gap: 12px;
+    margin-top: 12px;
   }
 
   button {
-    min-width: 60px;
-    padding: 4px 6px;
-    font-size: 0.75rem;
+    min-width: 80px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
   }
 }
 
@@ -239,10 +231,30 @@ button {
   .movies-table th:nth-child(4) {
     display: none;
   }
+
+  /* Još dodatno smanji padding */
+  .movies-table tbody tr {
+    padding: 12px;
+  }
+
+  .movies-table td {
+    font-size: 0.9rem;
+  }
+
+  button {
+    min-width: 70px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .movies-table {
-    overflow-x: auto;
+  .movies-table td {
+    margin-bottom: 12px;
+  }
+
+  /* Zadnjem td ukloni marginu */
+  .movies-table td:last-child {
+    margin-bottom: 0;
   }
 }
