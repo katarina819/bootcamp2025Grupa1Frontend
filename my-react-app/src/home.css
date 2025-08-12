@@ -45,7 +45,7 @@
     margin-top: 20px;
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 90vw;
     box-sizing: border-box;
 }
 
@@ -135,13 +135,29 @@
 
 
 @media (max-width: 480px) {
+  .buttons-wrapper {
+    max-width: 90vw;
+  }
+
   .home-page-btn {
-    font-size: 1rem;
-    padding: 12px 0;
+    font-size: 1.5rem;
+    padding: 20px 0;
+    width: 100%;
+    min-width: 0;
+    border-radius: 12px;
+    margin: 0 auto;
+  }
+
+  .search {
+    max-width: 90vw;
+    margin-top: 15px;
+    padding: 0 10px;
   }
 
   .search input {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
+    padding: 12px 16px;
   }
 }
+
 
