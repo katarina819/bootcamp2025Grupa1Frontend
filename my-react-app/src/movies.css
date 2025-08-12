@@ -176,56 +176,52 @@ button {
 }
 
 @media (max-width: 768px) {
-  /* Svaki red tablice pretvori u karticu */
-  .movies-table tbody tr {
-    display: block;
-    margin-bottom: 2rem; /* razmak između kartica */
-    padding: 16px;
-    border: 1px solid var(--secondary);
-    border-radius: 12px;
-    background-color: #fff;
+  .movies-table {
+    display: none; 
+  }
+
+  .movies-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .movie-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
   }
 
-  /* Svaka ćelija se prikazuje kao zaseban blok s labelom */
-  .movies-table td {
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 6px 0;
-    margin-top: 8px;
-    font-size: 1rem;
-    color: #222;
+  .movie-card:hover {
+    background-color: #f9f9f9;
   }
 
-  /* Dodaj labelu ispred svakog podatka */
-  .movies-table td::before {
-    content: attr(data-label);
-    font-weight: 700;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 4px;
+  .movie-card h3 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .movie-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .movie-info span {
+    flex: 1 1 45%;
     font-size: 0.9rem;
   }
 
-  /* Izbaci marginu sa zadnje ćelije */
-  .movies-table td:last-child {
-    margin-bottom: 0;
-  }
-
-  /* Action buttons stavi u red s razmakom */
   .action-buttons {
+    margin-top: 1rem;
     display: flex;
-    flex-direction: row;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 0.5rem;
   }
 
-  /* Gumbi da se ravnomjerno rasporede i budu manji */
   .action-buttons button {
     flex: 1;
-    padding: 8px 12px;
+    padding: 0.5rem;
     font-size: 0.9rem;
-    min-width: unset; /* makni min-width */
   }
 }

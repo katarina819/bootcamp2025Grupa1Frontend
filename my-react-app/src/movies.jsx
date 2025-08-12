@@ -23,6 +23,17 @@ const Movies = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenreId, setSelectedGenreId] = useState('');
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  
   useEffect(() => {
     setLoading(true);
     const genreQuery = selectedGenreId ? `&genreId=${selectedGenreId}` : '';
@@ -114,74 +125,124 @@ const Movies = () => {
   </select>
       </div>
     </div>
-      <table className="movies-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Duration (min)</th>
-            <th>Rating</th>
-            <th>Year</th>
-            <th>Genre</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-  {movies.length === 0 ? (
-    <tr>
-      <td colSpan="6" style={{ textAlign: 'center', padding: '1rem' }}>
-        No movies found.
-      </td>
-    </tr>
-  ) : (
-    movies.map((movie) => (
-      <tr key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
-        <td data-label="Title">{movie.name}</td>
-        <td data-label="Duration (min)">{movie.duration}</td>
-        <td data-label="Rating">{movie.rating}</td>
-        <td data-label="Year">{movie.releaseYear}</td>
-        <td data-label="Genre">{movie.genres ? movie.genres.join(' , ') : 'N/A'}</td>
-        <td data-label="Actions">
-          <div className="action-buttons">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate('/add-movie', { state: { editingMovie: movie } });
-              }}
-            >
-              Edit
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDeleteMovie(movie.id);
-              }}
-            >
-              Delete Movie
-            </button>
-          </div>
-        </td>
-      </tr>
-    ))
-  )}
-</tbody>
+      {isMobile ? (
+        <div className="movies-cards">
+          {movies.length === 0 ? (
+            <p>No movies found.</p>
+          ) : (
+            movies.map((movie) => (
+              <div
+                key={movie.id}
+                className="movie-card"
+                onClick={() => navigate(`/details/${movie.id}`)}
+              >
+                <h3>{movie.name}</h3>
+                <div className="movie-info">
+                  <span>
+                    <strong>Duration:</strong> {movie.duration} min
+                  </span>
+                  <span>
+                    <strong>Rating:</strong> {movie.rating}
+                  </span>
+                  <span>
+                    <strong>Year:</strong> {movie.releaseYear}
+                  </span>
+                  <span>
+                    <strong>Genres:</strong> {movie.genres ? movie.genres.join(", ") : "N/A"}
+                  </span>
+                </div>
+                <div className="action-buttons">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/add-movie", { state: { editingMovie: movie } });
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteMovie(movie.id);
+                    }}
+                  >
+                    Delete Movie
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      ) : (
+        <table className="movies-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Duration (min)</th>
+              <th>Rating</th>
+              <th>Year</th>
+              <th>Genre</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {movies.length === 0 ? (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center", padding: "1rem" }}>
+                  No movies found.
+                </td>
+              </tr>
+            ) : (
+              movies.map((movie) => (
+                <tr key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
+                  <td data-label="Title">{movie.name}</td>
+                  <td data-label="Duration (min)">{movie.duration}</td>
+                  <td data-label="Rating">{movie.rating}</td>
+                  <td data-label="Year">{movie.releaseYear}</td>
+                  <td data-label="Genre">{movie.genres ? movie.genres.join(" , ") : "N/A"}</td>
+                  <td data-label="Actions">
+                    <div className="action-buttons">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate("/add-movie", { state: { editingMovie: movie } });
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteMovie(movie.id);
+                        }}
+                      >
+                        Delete Movie
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      )}
 
-      </table>
       <div className="pagination">
-      <button disabled={page === 1} onClick={() => setPage(prev => prev - 1)}>
-        Previous
-      </button>
-      <span>Page {page} of {Math.ceil(totalCount / pageSize)}</span>
-      <button
-        disabled={page >= Math.ceil(totalCount / pageSize)}
-        onClick={() => setPage(prev => prev + 1)}
-      >
-        Next
-      </button>
-    </div>
+        <button disabled={page === 1} onClick={() => setPage((prev) => prev - 1)}>
+          Previous
+        </button>
+        <span>
+          Page {page} of {Math.ceil(totalCount / pageSize)}
+        </span>
+        <button
+          disabled={page >= Math.ceil(totalCount / pageSize)}
+          onClick={() => setPage((prev) => prev + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
-
 export default Movies;
-
