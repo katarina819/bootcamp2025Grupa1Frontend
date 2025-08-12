@@ -202,3 +202,61 @@ h2 {
   border-color: var(--accent);
   box-shadow: 0 0 8px rgba(226, 103, 171, 0.25);
 }
+
+/* 📱 Mobilna prilagodba */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .movie-form {
+    max-width: 90%;
+    padding: 1.2rem;
+    margin: 1rem auto;
+    box-shadow: none; /* manje sjene na mobilnom */
+  }
+
+  .movie-form input,
+  .movie-form textarea,
+  .movie-form .dropdown-toggle {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .movie-form textarea {
+    height: 100px;
+  }
+
+  .movie-form button {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .dropdown-menu {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .movie-form {
+    max-width: 95%;
+    padding: 1rem;
+  }
+
+  .movie-form input,
+  .movie-form textarea,
+  .movie-form .dropdown-toggle {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .movie-form button {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}

@@ -86,3 +86,53 @@
 .search ul li:hover {
     background-color: var(--secondary);
 }
+
+/* --- Za male ekrane --- */
+@media (max-width: 768px) {
+  .home-container {
+    margin-top: 10vh; /* manje praznog prostora gore */
+    gap: 20px; /* manji razmak */
+    padding: 0 10px;
+  }
+
+  .buttons-wrapper {
+    flex-direction: column; /* dugmad ispod jedno drugog */
+    gap: 15px;
+    padding: 0;
+  }
+
+  .home-page-btn {
+    padding: 20px;
+    font-size: large;
+    margin: 0; /* maknemo horizontalni razmak */
+    width: 100%;
+    min-width: auto;
+    border-radius: 12px;
+  }
+
+  .search {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .search input {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  .search ul {
+    width: 100%;
+  }
+}
+
+/* --- Za vrlo male ekrane (npr. stari mobiteli) --- */
+@media (max-width: 480px) {
+  .home-page-btn {
+    font-size: medium;
+    padding: 15px;
+  }
+
+  .search input {
+    font-size: 0.9rem;
+  }
+}

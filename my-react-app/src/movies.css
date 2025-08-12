@@ -175,6 +175,87 @@ button {
   padding: 0.25rem 0.5rem;
 }
 
+@media (max-width: 768px) {
+  .movies-container {
+    padding: 0 8px;
+    max-width: 100%;
+  }
+
+  .movies-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .movies-table table, 
+  .movies-table tbody,
+  .movies-table tr,
+  .movies-table th,
+  .movies-table td {
+    display: block;
+  }
+
+  .movies-table th,
+  .movies-table td {
+    padding: 10px 12px;
+    width: 100% !important; 
+    box-sizing: border-box;
+  }
+
+  .movies-table tr {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--secondary);
+  }
+
+  .movies-table thead {
+    display: none; 
+  }
+
+  
+  .movies-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-block;
+    width: 120px;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  button {
+    min-width: 70px;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+
+  .pagination {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-table td::before {
+    width: 100px;
+    font-size: 0.85rem;
+  }
+
+  button {
+    min-width: 60px;
+    padding: 5px 6px;
+    font-size: 0.8rem;
+  }
+
+  .pagination button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+}
 
 
 
