@@ -87,32 +87,40 @@
     background-color: var(--secondary);
 }
 
-/* --- Za male ekrane --- */
+
+
+
 @media (max-width: 768px) {
   .home-container {
-    margin-top: 10vh; /* manje praznog prostora gore */
-    gap: 20px; /* manji razmak */
+    margin-top: 10vh;
+    gap: 20px;
     padding: 0 10px;
   }
 
   .buttons-wrapper {
-    flex-direction: column; /* dugmad ispod jedno drugog */
-    gap: 15px;
+    flex-direction: column;
+    gap: 12px;
     padding: 0;
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto; 
   }
 
   .home-page-btn {
-    padding: 20px;
-    font-size: large;
-    margin: 0; /* maknemo horizontalni razmak */
+    padding: 16px 0;
+    font-size: 1.2rem;
+    margin: 0 auto;
     width: 100%;
-    min-width: auto;
+    min-width: 0;
     border-radius: 12px;
+    box-sizing: border-box;
   }
 
   .search {
     max-width: 100%;
     margin-top: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
   .search input {
@@ -125,14 +133,15 @@
   }
 }
 
-/* --- Za vrlo male ekrane (npr. stari mobiteli) --- */
+
 @media (max-width: 480px) {
   .home-page-btn {
-    font-size: medium;
-    padding: 15px;
+    font-size: 1rem;
+    padding: 12px 0;
   }
 
   .search input {
     font-size: 0.9rem;
   }
 }
+
